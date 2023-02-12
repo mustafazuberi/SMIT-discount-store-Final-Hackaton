@@ -1,0 +1,38 @@
+.signMain {
+  width: 80%;
+  margin: 0 auto;
+}
+.blue-text {
+  color: rgb(0, 119, 255);
+  font-weight: 600;
+}
+.green-text {
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.signupInpsDiv {
+  width: 80%;
+  margin: 35px auto;
+}
+.signupInp {
+  width: 100%;
+}
+
+.signupBtn {
+  background-color: #61b846;
+  padding: 12px 30px 12px 30px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 1px 2px 2px 2px #4a4a4a;
+  cursor: pointer;
+}
+.signupBtn:hover{
+    transition: 0.2s;
+    background-color: #579b42;
+}
+
+.c-pointer{
+    cursor: pointer;
+}
