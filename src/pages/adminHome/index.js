@@ -38,13 +38,23 @@ export default function Index() {
 
         {allProducts.map((item, index) => {
           return (
-            <div className="hp-card d-flex justify-content-between align-items-center mb-3" key={index}>
+            <div
+              className="hp-card d-flex justify-content-between align-items-center mb-3"
+              key={index}
+            >
               <div className="p-img">
-                <img src={item.productImage} className="img-fluid" alt="" />
+                <img
+                  src={item.productImage}
+                  className="img-fluid"
+                  width="80px"
+                  alt=""
+                />
               </div>
               <div className="p-info">
-                <p className="green-text fw-bold">{item.productCategory}</p>
-                <p className="text-secondary fw-bold">{item.unitPrice}.kg</p>
+                <p className="green-text fw-bold">{item.productName}</p>
+                <p className="text-secondary fw-bold">
+                  {item.unitPrice}.{item.unitName}
+                </p>
               </div>
               <div className="p-price">
                 <p className="text-secondary fw-bold">$2.1</p>
@@ -52,81 +62,6 @@ export default function Index() {
             </div>
           );
         })}
-
-
-
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={appleImg} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={watermelon} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={mango} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={appleImg} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={watermelon} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
-        <div className="hp-card d-flex justify-content-between align-items-center mb-3">
-          <div className="p-img">
-            <img src={mango} className="img-fluid" alt="" />
-          </div>
-          <div className="p-info">
-            <p className="green-text fw-bold">Apple</p>
-            <p className="text-secondary fw-bold">1.kg</p>
-          </div>
-          <div className="p-price">
-            <p className="text-secondary fw-bold">$2.1</p>
-          </div>
-        </div>
       </div>
       <Footer />
     </>

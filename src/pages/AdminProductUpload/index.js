@@ -2,7 +2,7 @@
 import Footer from "../../components/Footer";
 import AdminNavbar from "../../components/AdminNavbar";
 import { useSelector } from "react-redux";
-
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import {
   getDocs,
   storage,
@@ -18,23 +18,27 @@ import {
 } from "../../config/firebase";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+import { useState, useEffect } from "react";
 
-// import { getCategories } from "../../config/firebase";
 const Index = () => {
-  //   const getCategoryList = async function () {
-  //     try {
-  //       const classList = await getCategories();
-  //       const classOption = document.getElementById("class-list");
-  //       console.log(classList)
-  //       for (let item of classList) {
-  //         classOption.insertAdjacentHTML('afterend', `
-  //            <option value="${item.sectionName}">${item.sectionName}</option>`);
-  //       }
+  const [categories, setCategories] = useState([]);
 
-  //     } catch (e) {
-  //       console.log(e.message)
-  //     }
-  //   }
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const handleChangeCategory = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const querySnapshot = await getDocs(collection(db, "categories"));
+      const myCategories = [];
+      querySnapshot.forEach((doc) => {
+        myCategories.push({ id: doc.id, ...doc.data() });
+      });
+      setCategories(myCategories);
+    };
+    getCategories();
+  }, []);
 
   const userٰInfo = useSelector((state) => state.myAuth);
 
@@ -114,14 +118,10 @@ const Index = () => {
               </div>
 
               <div className="input-group">
-                <select
-                  className="form-control mb-2 border-0"
-                  id="productCategory"
-                >
-                  <option className="hidden" selected disabled>
-                    Select Category
-                  </option>
-                  <option value="fruit">Fruits</option>
+                <select id="productCategory" className='form-control mb-2 border-0'>
+                  {categories.map((item, index) => {
+                    return <option key={index} value={item.categoryName}>{item.categoryName}</option>;
+                  })}
                 </select>
               </div>
               <div className="input-group">
@@ -146,8 +146,9 @@ const Index = () => {
             </div>
             <div className="signup-btn text-center mb-2">
               <button
-                className="btn btn-primary theme-btn mt-1 fw-bold px-4 shadow"
+                className="btn btn-primary theme-btn mt-1 mb-5 fw-bold px-4 shadow"
                 onClick={addProduct}
+                
               >
                 Add Product
               </button>
@@ -155,6 +156,12 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <Footer />
     </>
   );
