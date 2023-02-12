@@ -36,6 +36,7 @@ const Index = () => {
         // console.log("isResturant inside " + isResturant)
         return;
       } else {
+       
         setWhereToNavigate("/userHome");
       }
     }
@@ -53,7 +54,7 @@ const Index = () => {
         padding: "3em",
       });
 
-      console.log(userCred.user.email);
+      authData(userCred);
 
       navigate(whereToNavigate);
       window.scrollTo(0, 0);

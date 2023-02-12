@@ -10,11 +10,11 @@ import { PersistGate } from "redux-persist/es/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

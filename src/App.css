@@ -36,3 +36,77 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* custom styling start  */
+
+.green-text{
+  color: #61B846 !important;
+}
+
+.blue-text{
+  color: #024F9D !important;
+}
+
+.theme-btn{
+  background-color: #61B846 !important;
+  color: white !important;
+}
+
+/* form stytling  */
+
+.input-fields input {
+  border-radius: 0px !important;
+  border: none !important;
+  color: grey;}
+  .input-fields .input-group {
+    margin-bottom: 17px;
+    border-bottom: 1px solid gray;
+  }
+  .input-fields .input-group i{
+    color: grey !important;
+  }
+  
+  .input-fields input:focus {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .c-pointer{
+    cursor: pointer;
+  }
+  
+  .admin-top-bar {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+  }
+  
+  .hp-card {
+    padding: 10px 40px;
+    border: 1px solid #61B846;
+    border-radius: 33px;
+  }
+  
+  .footer-sec i {
+    font-size: 25px !important;
+    color: gray;
+  }
+  
+  .footer-sec {
+    padding: 10px 30px;
+  }
+  
+  .footer-container{
+    width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%);
+      margin-top: 150px !important;
+      background-color: white !important;
+  }
+  
+  .horizontal-card-sec.container {
+    margin-bottom: 120px;
+  }
