@@ -110,3 +110,20 @@
   .horizontal-card-sec.container {
     margin-bottom: 120px;
   }
+
+
+  input.qty-field {
+    width: 40px;
+    border-radius: 10px;
+    background-color: rgb(240, 240, 240);
+    outline: none;
+    color: black;
+  }
+  
+  .container.cart-page {
+    margin-bottom: 120px;
+  }
+  
+  .user-shop-page {
+    margin-bottom: 120px;
+  }

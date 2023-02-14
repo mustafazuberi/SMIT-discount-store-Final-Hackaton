@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./style.css";
+import swal from "sweetalert";
 import Swal from "sweetalert2";
+
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+
 import {
   createUserWithEmailAndPassword,
   addUserToDBSignup,
@@ -22,21 +27,18 @@ const Index = () => {
     bindActionCreators(actionCreators, dispatch);
 
   const admins = useSelector((state) => state.myAdmins);
-  console.log(admins);
-
+  const [adminNameToSend, setAdminNameToSend] = useState('')
   let [whereToNavigate, setWhereToNavigate] = useState("");
 
   const isAdminHandler = (e) => {
     // console.log(e.target.value)
     for (let item of admins) {
       if (item.email === e.target.value) {
-        console.log("ye admin ha ");
+        setAdminNameToSend(item.fullName)
         admintExists(true);
         setWhereToNavigate("/adminHome");
-        // console.log("isResturant inside " + isResturant)
-        return;
       } else {
-       
+        setAdminNameToSend("")
         setWhereToNavigate("/userHome");
       }
     }
@@ -46,26 +48,35 @@ const Index = () => {
     try {
       const email = document.getElementById("email").value;
       const password = document.getElementById("psw").value;
-
       const userCred = await signInWithEmailAndPassword(auth, email, password);
-      Swal.fire({
-        title: "Congrats! Loggined Successfully.",
-        width: 600,
-        padding: "3em",
-      });
 
-      authData(userCred);
+      swal("Congrats!", "Loggined Successfully!", "success");
+
+
+      // authData(userCred);
+      if (whereToNavigate === '/adminHome') {
+        admintExists(true)
+        authData({ ...userCred, adminName: adminNameToSend })
+      } else {
+        authData({ ...userCred })
+
+        isAuthenticatedData(true)
+
+      }
+
 
       navigate(whereToNavigate);
       window.scrollTo(0, 0);
     } catch (e) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: e.message,
-      });
+
+      swal("error!", e.message, "error");
+
+
     }
   };
+
+  const test = useSelector(state => state.isAuthLoggined)
+  // console.log(test)
 
   return (
     <>
@@ -90,6 +101,7 @@ const Index = () => {
             className="signupInp"
             label="Password"
             variant="standard"
+            type={'password'}
           />
         </div>
 

@@ -63,5 +63,6 @@ export {
   storage,
   uploadBytes,
   getDownloadURL,
-  setDoc
+  setDoc,
+  getDoc
 };

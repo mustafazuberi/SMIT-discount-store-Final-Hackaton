@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getDocs, db, collection } from "./../../config/firebase";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import actionCreators from "./../../store/index";
 // import { useLocation } from 'react-router-dom'
@@ -25,12 +25,14 @@ const Index = () => {
       querySnapshot.forEach((doc) => {
         admins.push({ id: doc.id, ...doc.data() });
       });
-      console.log(admins);
-
-    //   dispatching action
       sendAdminData(admins);
     })();
   }, []);
+
+  const authInfo = useSelector(state => state.myAuth)
+  const isAdmin = useSelector(state => state.isAdminLoggined)
+
+
 
   return (
     <div>

@@ -1,6 +1,56 @@
-.rightHeading h3{
-    color: #61B846;
+.discHeading {
+    text-align: left;
 }
-.rightHeading h5{
-    color: #024F9D;
+
+.userBg {
+    width: 100%;
+    margin: 0 auto;
+    height: 50vh;
+}
+
+.userBg img {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width : 1000px) {
+    .userBg {
+        height: 50vh;
+    }
+}
+
+@media only screen and (max-width : 760px) {
+    .userBg {
+        height: 35vh;
+    }
+}
+
+@media only screen and (max-width : 450px) {
+    .userBg {
+        height: 30vh;
+    }
+}
+
+.cartQty {
+    padding: 3px 5px 3px 5px;
+    border-radius: 50%;
+    color: white;
+    background-color: #61b846;
+    top: -12px;
+    position: relative;
+}
+
+.cartQtyF {
+    padding: 3px 5px 3px 5px;
+    border-radius: 50%;
+    color: white;
+    background-color: #61b846;
+    top: -6px;
+    position: relative;
+}
+
+@media only screen and (max-width : 330px) {
+    .shop-title h1 {
+        font-size: 21px;
+    }
 }

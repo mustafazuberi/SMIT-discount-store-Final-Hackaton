@@ -2,7 +2,7 @@ const isLoggined = false;
 
 const reducers = (state = isLoggined, action) => {
   if (action.type === "firebaseLoggined") {
-    return action.payload;
+    return action.payLoad;
   } else {
     return state;
   }

@@ -28,12 +28,11 @@ export default function Index() {
     getProducts();
   }, []);
 
-  console.log(allProducts);
 
   return (
     <>
       <AdminNavbar />
-      <div className="horizontal-card-sec container">
+      <div className="horizontal-card-sec container" >
         <h6 className="mt-5 mb-5 blue-text fw-bold">All Products</h6>
 
         {allProducts.map((item, index) => {
@@ -53,11 +52,11 @@ export default function Index() {
               <div className="p-info">
                 <p className="green-text fw-bold">{item.productName}</p>
                 <p className="text-secondary fw-bold">
-                  {item.unitPrice}.{item.unitName}
+                  1 {item.unitName}
                 </p>
               </div>
               <div className="p-price">
-                <p className="text-secondary fw-bold">$2.1</p>
+                <p className="text-secondary fw-bold">{item.unitPrice}</p>
               </div>
             </div>
           );

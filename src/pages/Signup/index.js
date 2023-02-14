@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import swal from "sweetalert";
 import Swal from "sweetalert2";
 import {
   createUserWithEmailAndPassword,
@@ -30,12 +31,9 @@ const Index = () => {
       }
       await createUserWithEmailAndPassword(auth, email, password);
       await addUserToDBSignup(fullName, contact);
-      Swal.fire({
-        title: "Congrats! Account Created Successfully.",
-        width: 600,
-        padding: "3em",
-      });
-      navigate("/");
+      swal("Congrats!", "Account Created Successfully!", "success");
+
+      navigate("/login");
       window.scrollTo(0, 0);
     } catch (e) {
       Swal.fire({
@@ -84,6 +82,8 @@ const Index = () => {
             className="signupInp"
             label="Password"
             variant="standard"
+            type={'password'}
+
           />
         </div>
 

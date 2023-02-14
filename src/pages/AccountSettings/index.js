@@ -13,7 +13,7 @@ import {
   uploadBytes,
   getDownloadURL,
   getDocs,
-  signOut,
+  auth,
   collection,
 } from "./../../config/firebase";
 import { useSelector } from "react-redux";
@@ -21,22 +21,41 @@ import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+
+import { useDispatch, } from "react-redux";
+import { bindActionCreators } from "redux";
+import actionCreators from "./../../store/index";
+
+
+
 const AccountSettings = () => {
   const authInfo = useSelector((state) => state.myAuth);
-  const navigate = useNavigate(0)
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
 
 
+
+  const { authData, admintExists, isAuthenticatedData } =
+    bindActionCreators(actionCreators, dispatch);
 
 
 
 
   const updateFullname = async () => {
     const fullName = document.getElementById("fullName").value;
+    if (!fullName) {
+      swal("Please enter name to update!")
+      return
+    }
     const docRef = doc(db, "admins", `${authInfo.user.uid}`);
     const updatedData = { email: authInfo.user.email, fullName: fullName };
     await setDoc(docRef, updatedData);
-    swal(`Congrats ${fullName} your name updated Successfully!`);
+    authData({ ...authInfo, adminName: fullName })
+    swal("Updated", `Congrats ${fullName} your name updated Successfully!`, "success");
   };
+
+
+
 
   const uploadImage = async (image) => {
     const storageRef = ref(storage, `images/${image.name}`);
@@ -44,6 +63,9 @@ const AccountSettings = () => {
     const url = await getDownloadURL(snapshot.ref);
     return url;
   };
+
+
+
 
   const [added, setAdded] = useState("");
   const addCategory = async () => {
@@ -70,6 +92,10 @@ const AccountSettings = () => {
     setAdded("added");
   };
 
+
+
+
+
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const getCategories = async () => {
@@ -82,6 +108,27 @@ const AccountSettings = () => {
     };
     getCategories();
   }, [added]);
+
+
+
+
+
+
+  const logout = async () => {
+    await auth.signOut();
+    const user = auth.currentUser;
+    authData({})
+    admintExists(false)
+
+    swal("Incomplete Form", "Congrats! Logged Out Successfully", "error");
+
+
+    // setLoginOptionDisplay("Cart-and-Login d-none")
+    navigate("/")
+  }
+
+
+
 
   return (
     <>
@@ -96,8 +143,8 @@ const AccountSettings = () => {
               placeholder="Update Fullname"
               id="fullName"
             />
-            <span className="input-group-append d-flex align-items-center">
-              <CheckIcon onClick={updateFullname} />
+            <span className="input-group-append d-flex align-items-center px-2" style={{ backgroundColor: "#198754" }}>
+              <CheckIcon onClick={updateFullname} style={{ cursor: "pointer", color: "white" }} />
             </span>
           </div>
         </div>
@@ -117,10 +164,10 @@ const AccountSettings = () => {
             </button>
           </div>
         </div>
-        <div className="all-categories mt-4 d-flex flex-column align-items-center fw-bold blue-text mb-5">
+        <div className="all-categories mt-4 d-flex flex-column align-items-center fw-bold blue-text">
           <p>All Categories</p>
 
-          <div className="overflow-y w-75 mb-5">
+          <div className="overflow-y w-75">
             {categories.map((item, index) => {
               return (
                 <div
@@ -143,22 +190,24 @@ const AccountSettings = () => {
                 </div>
               );
             })}
+
           </div>
         </div>
       </div>
-      
-      <button className="btn btn-primary theme-btn mt-1 mb-5 fw-bold px-4 shadow">
-        Logout
+
+
+      <button onClick={logout} className="loginBtn mt-1 fw-bold px-4">
+        Log out
       </button>
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br /><br /><br />
+      <br /><br />
+
+
 
       <Footer />
+
+
     </>
   );
 };

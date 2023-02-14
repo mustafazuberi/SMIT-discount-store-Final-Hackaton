@@ -56,7 +56,8 @@ const Index = () => {
     const unitPrice = document.getElementById("unitPrice").value;
 
     if (!document.getElementById("productImage").files[0]) {
-      swal("Select Image to Create Item.");
+      swal("Select Image", "Select Image to Create Item.", "error");
+
       return;
     }
     const productImage = await uploadImage(
@@ -79,26 +80,26 @@ const Index = () => {
       !unitPrice ||
       !productImage
     ) {
-      swal("Please Input all fields");
+      swal("Incomplete Form", "Please fill Input all fields", "error");
+      return
     }
     const productId = userٰInfo.user.uid + Date.now();
     const myItemRef = doc(db, "products", `${productId}`);
     await setDoc(myItemRef, productItems);
-    Swal.fire({
-      title: "Item added in your resturant successfully.",
-      width: 600,
-    });
+
+    swal("Added", "Product added in successfully", "success");
+
   };
 
   return (
     <>
       <AdminNavbar />
-      <div className="container">
+      <div className="container"  >
         <p className="fs-6 mt-5 ms-2" style={{ color: "#024F9D" }}>
           Add New Items
         </p>
-        <div className="container">
-          <div className="signup-form w-75 mx-auto mt-2">
+        <div className="container" >
+          <div className="signup-form w-75 mx-auto mt-2" >
             <div className="input-fields">
               <div className="input-group">
                 <input
@@ -146,22 +147,20 @@ const Index = () => {
             </div>
             <div className="signup-btn text-center mb-2">
               <button
-                className="btn btn-primary theme-btn mt-1 mb-5 fw-bold px-4 shadow"
+                className="mt-1 mb-5 fw-bold px-4 shadow loginBtn "
                 onClick={addProduct}
-                
+
               >
                 Add Product
               </button>
+
+
             </div>
           </div>
         </div>
       </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+
+      <br /><br /><br />
       <Footer />
     </>
   );

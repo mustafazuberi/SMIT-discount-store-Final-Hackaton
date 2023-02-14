@@ -33,3 +33,26 @@ export const authData = (auth) => {
     });
   };
 };
+
+
+
+
+export const addToCart = (cartItem) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'addToCart',
+      payLoad: cartItem
+    })
+  }
+}
+
+
+
+
+export const removeFromCart = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'removeFromCart',
+    })
+  }
+}

@@ -6,6 +6,8 @@ import AdminProductUpload from "../pages/AdminProductUpload";
 import AdminHome from "./../pages/AdminHome";
 import AdminOrders from "../pages/AdminOrders";
 import AccountSettings from "../pages/AccountSettings";
+import UserSetting from "../pages/UserSetting/index"
+import UserCart from "./../pages/UserCart"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -42,6 +44,14 @@ const Router = () => {
     {
       path: "/adminAccountSettings",
       element: <AccountSettings />,
+    },
+    {
+      path: "/userSetting",
+      element: <UserSetting/>,
+    },
+    {
+      path: "/userCart",
+      element: <UserCart/>,
     },
   ]);
   return (
