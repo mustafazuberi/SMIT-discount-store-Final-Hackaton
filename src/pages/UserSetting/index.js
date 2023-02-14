@@ -71,6 +71,23 @@ export default function UserSetting() {
         swal("Congrats!", `Congrats ${fullName} your name updated Successfully!`, "success");
     }
 
+
+    const convertMillisecondsToTime = (milliseconds) => {
+        const date = new Date(milliseconds);
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let amPm = 'AM';
+        if (hours > 12) {
+            hours -= 12;
+            amPm = 'PM';
+        }
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        return `${hours}:${minutes} ${amPm}`;
+    };
+
+
     return (
         <>
             <div className="container">
@@ -94,7 +111,7 @@ export default function UserSetting() {
                             return <div className="orders d-flex justify-content-between" key={index}>
                                 <div className="user-bio">
                                     <p className='m-0 fw-bold'>{item.fullName}</p>
-                                    <small>Just Now - {item.status}</small>
+                                    <small>{convertMillisecondsToTime(item.time)} - {item.status}</small>
                                     <div className="p-items mt-3">
 
                                         {

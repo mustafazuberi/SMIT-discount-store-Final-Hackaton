@@ -49,6 +49,26 @@ export default function UserHome() {
     }, []);
 
 
+    const filterByCategory = async () => {
+
+
+        const querySnapshot = await getDocs(collection(db, "products"));
+        const myProducts = [];
+        querySnapshot.forEach((doc) => {
+            myProducts.push({ id: doc.id, ...doc.data() });
+        });
+        if (document.getElementById("productCategory").value === "all") {
+            setAllProducts(myProducts)
+            return
+        }
+
+
+        const categoryToFilter = document.getElementById("productCategory").value
+        const filteredCategories = myProducts.filter(item => item.productCategory === categoryToFilter)
+        setAllProducts(filteredCategories)
+
+    }
+
 
 
     const dispatch = useDispatch();
@@ -90,8 +110,15 @@ export default function UserHome() {
 
 
                     <div className="categories">
-
+                        <h6 className='green-text filterHead'>filter by category</h6>
+                        <select id="productCategory" onChange={() => filterByCategory()} className='form-control mb-2 border-1'>
+                            <option className='filterOpt' value={'all'}>{'All'}</option>
+                            {categories.map((item, index) => {
+                                return <option key={index} className='filterOpt' value={item.categoryName}>{item.categoryName}</option>;
+                            })}
+                        </select>
                     </div>
+
 
 
 
@@ -103,7 +130,7 @@ export default function UserHome() {
 
 
 
-                        {allProducts.map((item, index) => {
+                        {allProducts.length ? allProducts.map((item, index) => {
                             return (
                                 <div className="product d-flex justify-content-between w-100 align-items-center mb-5" key={index}>
                                     <div className="product-image">
@@ -120,7 +147,7 @@ export default function UserHome() {
                                     </div>
                                 </div>
                             );
-                        })}
+                        }) : <h3>No Products</h3>}
 
 
                     </div>

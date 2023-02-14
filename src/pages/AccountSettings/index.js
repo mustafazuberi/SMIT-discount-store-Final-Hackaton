@@ -85,10 +85,7 @@ const AccountSettings = () => {
     const categoryId = authInfo.user.uid + Date.now();
     const myCategoryRef = doc(db, "categories", `${categoryId}`);
     await setDoc(myCategoryRef, categoryObjInfo);
-    Swal.fire({
-      title: "Category Added successfully.",
-      width: 600,
-    });
+    swal("Added", "Congrats! Category Added successfully", "success");
     setAdded("added");
   };
 

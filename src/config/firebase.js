@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -10,12 +9,9 @@ import {
   getFirestore,
   doc,
   setDoc,
-  addDoc,
   collection,
-  query,
   getDoc,
   getDocs,
-  DocRef,
 
 } from "firebase/firestore";
 
@@ -51,6 +47,17 @@ const addUserToDBSignup = async (fullName, contact) => {
   return setDoc(doc(db, "users", uid), userProfile);
 };
 
+
+
+
+
+
+
+
+
+
+
+
 export {
   auth,
   createUserWithEmailAndPassword,
@@ -64,5 +71,6 @@ export {
   uploadBytes,
   getDownloadURL,
   setDoc,
-  getDoc
+  getDoc,
+  onAuthStateChanged
 };

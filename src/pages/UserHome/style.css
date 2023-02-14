@@ -54,3 +54,8 @@
         font-size: 21px;
     }
 }
+
+.filterHead {
+    font-family: monospace;
+    text-align: left;
+}
