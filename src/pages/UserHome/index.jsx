@@ -12,11 +12,6 @@ import actionCreators from "./../../store/index";
 import { useNavigate } from 'react-router-dom'
 
 
-import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
-import Typography from '@mui/joy/Typography';
-import Card from '@mui/joy/Card';
-
 
 export default function UserHome() {
 

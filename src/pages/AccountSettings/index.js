@@ -120,10 +120,7 @@ const AccountSettings = () => {
     authData({})
     admintExists(false)
 
-    swal("Incomplete Form", "Congrats! Logged Out Successfully", "error");
-
-
-    // setLoginOptionDisplay("Cart-and-Login d-none")
+    swal("Logged Out", "Congrats! Logged Out Successfully", "success");
     navigate("/")
   }
 
